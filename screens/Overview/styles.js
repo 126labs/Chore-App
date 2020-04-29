@@ -1,18 +1,12 @@
 import { StyleSheet } from "react-native";
 
-const circleDiameter = 120;
+const circleDiameter = 100;
 
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    width: "100%"
-  },
-  listContainer: {
-    flex: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "flex-start"
+    width: "30%"
   },
   circle: {
     height: circleDiameter,
@@ -35,14 +29,22 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(240,240,240,0.7)",
     borderRadius: circleDiameter,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "space-evenly"
   },
   check: {
     fontSize: 50,
     color: "#333333"
   },
+  listContainer: {
+    flex: 1,
+    flexDirection: "row",
+    // justifyContent: "space-evenly",
+    flexWrap: "wrap",
+    alignItems: "center"
+  },
   item: {
-    width: "50%"
+    flexBasis: "33%",
+    width: "33%"
   }
 });
 
