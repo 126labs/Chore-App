@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    width: "30%"
+    width: "30%",
+    backgroundColor: 'lightgray'
   },
   circle: {
     height: circleDiameter,
