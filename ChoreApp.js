@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack";
-import { Text } from "react-native-elements";
+
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUserToken } from "./redux/user/selectors";
-import Overview from "./screens/Overview";
 
 // Screens
-import { Login, Landing } from "./screens";
+import { Login, Landing, Overview as MainOverView } from "./screens";
 
 const Home = createStackNavigator();
+const Overview = createStackNavigator();
 
 const ChoreApp = ({ token }) => {
-  const [signedIn] = useState(false);
-
   const HomeStack = () => (
     <Home.Navigator screenOptions={{
       headerShown: false,
@@ -28,9 +26,21 @@ const ChoreApp = ({ token }) => {
     </Home.Navigator>
   );
 
+  const OverviewStack = () => (
+    <Overview.Navigator screenOptions={{
+      headerShown: false,
+      gestureEnabled: true,
+      gestureDirection: "horizontal",
+      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+    }}
+    >
+      <Overview.Screen name="Overview" component={MainOverView} />
+    </Overview.Navigator>
+  );
+
   return (
     <NavigationContainer>
-      { token ? <Overview></Overview> : <HomeStack />}
+      { token ? <OverviewStack /> : <HomeStack />}
     </NavigationContainer>
   );
 };

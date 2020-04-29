@@ -2,6 +2,8 @@
 import React, { Component, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import ChoreItemList from "./components/ChoreItemList";
+import TopNavigation from "./components/TopNavigation";
+import BottomNavigation from "./components/BottomNavigation";
 
 const styles = StyleSheet.create({
   container: {
@@ -43,7 +45,7 @@ const Overview = (props) => {
       name: "Mike",
       photo: "https://choreappphotos.s3-us-west-1.amazonaws.com/27.jpg",
       done: false
-    },
+    }
   ]);
   return (
     <View style={styles.container}>
