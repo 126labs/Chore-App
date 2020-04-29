@@ -6,6 +6,7 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome";
 // import styles from "../styles";
 
+
 const circleDiameter = 100;
 
 const styles = StyleSheet.create({

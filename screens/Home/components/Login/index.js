@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Alert, Text, View, TextInput, TouchableHighlight
+  Alert, Text, View, TextInput, TouchableOpacity
 } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
@@ -49,12 +49,12 @@ const Login = ({ emailSignInStart }) => {
           onChangeText={(value) => handleInput("password", value)}
         />
       </View>
-      <TouchableHighlight style={styles.buttonContainer} onPress={emailSignInStart}>
+      <TouchableOpacity style={styles.buttonContainer} onPress={emailSignInStart}>
         <Text style={styles.text}>Login</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => onClick("reset password")}>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => onClick("reset password")}>
         <Text style={styles.text}>Forgot your password?</Text>
-      </TouchableHighlight>
+      </TouchableOpacity>
     </ScreenContainer>
   );
 };
