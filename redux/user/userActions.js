@@ -15,3 +15,16 @@ export const signInFailure = (errorMessage) => ({
   type: UserActionsTypes.SIGN_IN_FAILURE,
   payload: errorMessage
 });
+
+export const signOutStart = () => ({
+  type: UserActionsTypes.SIGN_OUT_START
+});
+
+export const signOutSuccess = () => ({
+  type: UserActionsTypes.SIGN_OUT_SUCCESS
+});
+
+export const signOutFailure = (errorMessage) => ({
+  type: UserActionsTypes.SIGN_OUT_FAILURE,
+  payload: errorMessage
+});
