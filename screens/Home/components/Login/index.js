@@ -6,20 +6,27 @@ import { connect } from "react-redux";
 import styles from "./styles";
 import { ScreenContainer } from "../../../../components";
 
-const Login = ({ loginAction, navigation }) => {
+import {
+  emailSignInStart
+} from "../../../../redux/user/userActions";
+
+const Login = ({ emailSignInStart }) => {
   const [login, setLogin] = useState({
     email: "",
     password: ""
   });
+
   const handleInput = (name, input) => {
     setLogin((previousState) => ({
       ...previousState,
       [name]: input
     }));
   };
+
   const onClick = (viewId) => {
     Alert.alert("Alert", `Button pressed ${viewId}`);
   };
+
   return (
     <ScreenContainer>
       <View>
@@ -42,7 +49,7 @@ const Login = ({ loginAction, navigation }) => {
           onChangeText={(value) => handleInput("password", value)}
         />
       </View>
-      <TouchableHighlight style={styles.buttonContainer} onPress={loginAction}>
+      <TouchableHighlight style={styles.buttonContainer} onPress={emailSignInStart}>
         <Text style={styles.text}>Login</Text>
       </TouchableHighlight>
       <TouchableHighlight onPress={() => onClick("reset password")}>
@@ -52,13 +59,4 @@ const Login = ({ loginAction, navigation }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  logins: state.logins
-});
-
-const mapDispachToProps = (dispatch) => ({
-  loginAction: () => dispatch({ type: "LOGIN_ACTION", payload: true })
-});
-
-
-export default connect(mapStateToProps, mapDispachToProps)(Login);
+export default connect(null, { emailSignInStart })(Login);

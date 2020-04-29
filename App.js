@@ -1,36 +1,16 @@
-import React, { useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack";
-import { Text } from "react-native";
+import React from "react";
 import { Provider } from "react-redux";
-import store from "./redux/store/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store";
 
-import { Login, Landing } from "./screens";
+import ChoreApp from "./ChoreApp";
 
-const Home = createStackNavigator();
+const App = () => (
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <ChoreApp />
+    </PersistGate>
+  </Provider>
+);
 
-export default function App() {
-  const [signedIn] = useState(false);
-
-  const HomeStack = () => (
-    <Home.Navigator screenOptions={{
-      headerShown: false,
-      gestureEnabled: true,
-      gestureDirection: "horizontal",
-      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
-    }}
-    >
-      <Home.Screen name="Home" component={Landing} />
-      <Home.Screen name="Login" component={Login} />
-    </Home.Navigator>
-  );
-
-  return (
-    <Provider store={store}>
-      {console.log(store.getState())}
-      <NavigationContainer>
-        { signedIn ? <Text>Overview Component</Text> : <HomeStack />}
-      </NavigationContainer>
-    </Provider>
-  );
-}
+export default App;
