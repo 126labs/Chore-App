@@ -11,9 +11,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    width: "100%"
+    paddingTop: 120,
+    paddingLeft: 20,
+    paddingRight: 20
   },
   listContainer: {
+    flex: 1,
     flexDirection: "row",
     flexWrap: "wrap"
   }
@@ -23,10 +26,10 @@ const ChoreItemList = ({ list }) => {
 
   return (
     <ScrollView>
-      <View>
+      <View style={styles.container}>
         <View style={styles.listContainer}>
           {list.map((listItem, index) => (
-            <ChoreItem style={styles.item} item={listItem} />
+            <ChoreItem style={styles.item} item={listItem} id={index} />
           ))}
         </View>
       </View>

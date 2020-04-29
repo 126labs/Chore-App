@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    width: "30%"
+    width: "33.33333%",
+    paddingBottom: 20
   },
   circle: {
     height: circleDiameter,
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const ChoreItem = ({ item }) => {
+const ChoreItem = ({ item, id }) => {
   const [done, setDone] = useState(item.done);
 
   const checkmark = <View style={styles.overlay} pointerEvents="none"><Icon name="check" style={styles.check} /></View>;
