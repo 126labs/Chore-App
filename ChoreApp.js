@@ -5,6 +5,7 @@ import { Text } from "react-native-elements";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUserToken } from "./redux/user/selectors";
+import Overview from "./screens/Overview";
 
 // Screens
 import { Login, Landing } from "./screens";
@@ -29,7 +30,7 @@ const ChoreApp = ({ token }) => {
 
   return (
     <NavigationContainer>
-      { token ? <Text h2>Overview Component</Text> : <HomeStack />}
+      { token ? <Overview></Overview> : <HomeStack />}
     </NavigationContainer>
   );
 };
