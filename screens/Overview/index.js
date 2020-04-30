@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 import ChoreItemList from "./components/ChoreItemList";
 import TopNavigation from "./components/TopNavigation";
 import BottomNavigation from "./components/BottomNavigation";
-import Signout from "./components/sigout";
+import Signout from "./components/SignOut";
 
 const Overview = (props) => {
   const [list, setList] = useState([

@@ -11,7 +11,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 20,
     flexDirection: "row",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    paddingLeft: 20,
+    paddingRight: 20
   }
 });
 

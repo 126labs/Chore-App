@@ -4,13 +4,13 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { signOutStart } from "../../../redux/user/userActions";
 
 // change style remove
-const Button = ({ signOutStart }) => (
+const SignOut = ({ signOutStart }) => (
   <View style={{ marginTop: 50 }}>
     <TouchableOpacity onPress={signOutStart}>
-      <Text>Please sign out</Text>
+      <Text>Sign Out</Text>
     </TouchableOpacity>
   </View>
 );
 
 
-export default connect(null, { signOutStart })(Button);
+export default connect(null, { signOutStart })(SignOut);
