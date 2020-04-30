@@ -10,8 +10,9 @@ import {
   emailSignInStart
 } from "../../../../redux/user/userActions";
 
-const Login = ({ emailSignInStart }) => {
+const SignUp = ({ emailSignInStart }) => {
   const [login, setLogin] = useState({
+    name: "",
     email: "",
     password: ""
   });
@@ -23,18 +24,23 @@ const Login = ({ emailSignInStart }) => {
     }));
   };
 
-  const onClick = (viewId) => {
-    Alert.alert("Alert", `Button pressed ${viewId}`);
-  };
-
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.text}>Email</Text>
         <TextInput
+          placeholder="Name"
+          value={login.username}
+          style={styles.input}
+          onChangeText={(value) => handleInput("name", value)}
+        />
+      </View>
+      <View>
+        <Text style={styles.text}>Email</Text>
+        <TextInput
           placeholder="Email"
           keyboardType="email-address"
-          value={login.username}
+          value={login.email}
           style={styles.input}
           onChangeText={(value) => handleInput("email", value)}
         />
@@ -52,21 +58,14 @@ const Login = ({ emailSignInStart }) => {
       <View style={styles.bottomContainer}>
         <Button
           type="outline"
-          title="Login"
+          title="SignUp"
           buttonStyle={styles.bottomBtn}
           containerStyle={styles.btnContainer}
           onPress={emailSignInStart}
-        />
-        <Button
-          type="outline"
-          title="Forgot your password?"
-          buttonStyle={styles.bottomBtn}
-          containerStyle={styles.btnContainer}
-          onPress={() => onClick("reset password")}
         />
       </View>
     </View>
   );
 };
 
-export default connect(null, { emailSignInStart })(Login);
+export default connect(null, { emailSignInStart })(SignUp);

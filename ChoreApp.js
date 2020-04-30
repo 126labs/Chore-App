@@ -7,11 +7,10 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentUserToken } from "./redux/user/selectors";
 
 // Screens
-import { Login, Landing, Overview as MainOverView } from "./screens";
+import { Login, Landing, RegistrationNavi, Overview as MainOverView } from "./screens";
 
 const Home = createStackNavigator();
 const Overview = createStackNavigator();
-
 const ChoreApp = ({ token }) => {
   const HomeStack = () => (
     <Home.Navigator screenOptions={{
@@ -22,7 +21,7 @@ const ChoreApp = ({ token }) => {
     }}
     >
       <Home.Screen name="Home" component={Landing} />
-      <Home.Screen name="Login" component={Login} />
+      <Home.Screen name="Login" component={RegistrationNavi} />
     </Home.Navigator>
   );
 

@@ -1,1 +1,1 @@
-export { Landing, Login } from "./components";
+export { Landing, Login, RegistrationNavi } from "./components";
