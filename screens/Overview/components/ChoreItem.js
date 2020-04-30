@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const ChoreItem = ({ item, id }) => {
+const ChoreItem = ({ item }) => {
   const [done, setDone] = useState(item.done);
 
   const checkmark = <View style={styles.overlay} pointerEvents="none"><Icon name="check" style={styles.check} /></View>;
