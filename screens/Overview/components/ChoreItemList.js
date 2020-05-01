@@ -8,12 +8,10 @@ import ChoreItem from "./ChoreItem";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     marginTop: 20,
     flexDirection: "row",
     flexWrap: "wrap",
-    paddingLeft: 20,
-    paddingRight: 20
+    justifyContent: "center"
   }
 });
 
@@ -21,7 +19,7 @@ const ChoreItemList = ({ list }) => (
   <ScrollView>
     <View style={styles.container}>
       {list.map((listItem) => (
-        <ChoreItem style={styles.item} item={listItem} id={listItem.id} />
+        <ChoreItem style={styles.item} item={listItem} key={listItem.id} />
       ))}
     </View>
   </ScrollView>

@@ -3,30 +3,38 @@ import {
   StyleSheet, Text, View, StatusBar
 } from "react-native";
 import { Button } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/Octicons";
 import { useNavigation } from "@react-navigation/native";
+import Settings from "../../Settings/";
+import { signOutStart } from "../../../redux/user/userActions";
 
 const styles = StyleSheet.create({
-  root: {
+  container: {
     flex: 1,
     width: "100%",
     flexDirection: "row",
-    paddingTop: 10,
     alignItems: "center",
-    backgroundColor: "#12181d"
+    justifyContent: "center",
+    backgroundColor: "#3f3f6f",
+    paddingTop: 35,
+    maxHeight: 90,
+    zIndex: -1
   },
-
-  left: {
-    width: 80
+  buttons: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "90%",
+    justifyContent: "space-between"
   },
-
-  mid: {
-    flex: 1,
+  titleBlock: {
+    position: "absolute",
+    paddingTop: 35,
+    width: "100%",
     alignItems: "center"
   },
-
-  right: {
-    width: 80
+  title: {
+    color: "white",
+    fontSize: 20
   }
 });
 
@@ -34,25 +42,23 @@ const TopNavigation = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.root}>
-      <StatusBar backgroundColor="#12181d" barStyle="light-content" />
-      <View style={styles.left}>
-        <Button
-          buttonStyle={{ backgroundColor: "#12181d" }}
-          icon={(<Icon name="user" size={25} color="white" />)}
-          onPress={() => navigation.navigate("Setting")}
-        />
+    <View style={styles.container}>
+      <StatusBar backgroundColor="#0f0f0f" barStyle="light-content" />
+
+      <View style={styles.titleBlock}>
+        <Text style={styles.title}>Overview</Text>
       </View>
 
-      <View style={styles.mid}><Text style={{ color: "white", fontSize: 25 }}>Chore app</Text></View>
+      <View style={styles.buttons}>
+        <View style={styles.leftButton}>
+          <Icon name="pencil" size={25} color="white" onPress={() => navigation.navigate("Settings")} />
+        </View>
 
-      <View style={styles.right}>
-        <Button
-          buttonStyle={{ backgroundColor: "#12181d" }}
-          icon={<Icon name="cog" size={25} color="white" />}
-          onPress={() => navigation.navigate("Setting")}
-        />
+        <View style={styles.rightButton}>
+          <Icon name="gear" size={25} color="white" onPress={() => navigation.navigate("Settings")} />
+        </View>
       </View>
+
     </View>
   );
 };
