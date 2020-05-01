@@ -1,38 +1,41 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
-import SignOut from "./SignOut";
+import Icon from "react-native-vector-icons/Octicons";
+import SignOut from "../../Settings/components/SignOut";
 
 const styles = StyleSheet.create({
-  root: {
+  container: {
     flex: 1,
     width: "100%",
-    flexDirection: "row",
-    paddingTop: 10,
+    paddingTop: 20,
+    backgroundColor: "#3f3f6f",
     alignItems: "center",
-    backgroundColor: "#12181d"
+    maxHeight: 80
   },
-
-  left: {
-    flex: 1
-
-  },
-
-  right: {
-    flex: 1
+  buttons: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "80%"
   }
 });
 
 const BottomNavigation = () => (
-  <View style={styles.root}>
-    <View style={styles.left}><SignOut /></View>
+  <View style={styles.container}>
+    <View style={styles.buttons}>
+      <View>
+        <Icon name="list-unordered" size={25} color="white" />
+      </View>
 
-    <View style={styles.left}><Button buttonStyle={{ backgroundColor: "#12181d" }} icon={<Icon name="user" size={25} color="white" />} /></View>
+      <View>
+        <Icon name="calendar" size={25} color="white" />
+      </View>
 
-    <View style={styles.left}><Button buttonStyle={{ backgroundColor: "#12181d" }} icon={<Icon name="user" size={25} color="white" />} /></View>
-
-    <View style={styles.right}><Button buttonStyle={{ backgroundColor: "#12181d" }} icon={<Icon name="cog" size={25} color="white" />} /></View>
+      <View>
+        <Icon name="person" size={25} color="white" />
+      </View>
+    </View>
   </View>
 );
 

@@ -7,7 +7,7 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentUserToken } from "./redux/user/selectors";
 
 // Screens
-import { Login, Landing, RegistrationNavi, Overview as MainOverView } from "./screens";
+import { Login, Landing, RegistrationNavi, Overview as MainOverview, Settings } from "./screens";
 
 const Home = createStackNavigator();
 const Overview = createStackNavigator();
@@ -33,7 +33,8 @@ const ChoreApp = ({ token }) => {
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
     }}
     >
-      <Overview.Screen name="Overview" component={MainOverView} />
+      <Overview.Screen name="Overview" component={MainOverview} />
+      <Overview.Screen name="Settings" component={Settings} />
     </Overview.Navigator>
   );
 
