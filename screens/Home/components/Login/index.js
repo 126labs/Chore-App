@@ -59,6 +59,7 @@ const Login = ({ emailSignInStart, navigation }) => {
         <TextInput
           placeholder="Email"
           keyboardType="email-address"
+          autoCapitalize="none"
           value={login.username}
           style={styles.input}
           onChangeText={(value) => handleInput("email", value)}
@@ -69,6 +70,7 @@ const Login = ({ emailSignInStart, navigation }) => {
         <TextInput
           placeholder="Password"
           secureTextEntry
+          autoCapitalize="none"
           value={login.password}
           style={styles.input}
           onChangeText={(value) => handleInput("password", value)}
