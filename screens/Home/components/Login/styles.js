@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     fontSize: 22,
     paddingLeft: 45,
+    color: "black",
     backgroundColor: "white",
-    color: "rgba(225, 225, 225, 0.7)",
     marginHorizontal: 25
 
   },

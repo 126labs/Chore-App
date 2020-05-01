@@ -91,7 +91,7 @@ const RegistrationNavi = () => {
               active: 0
             }))}
           >
-            <Text style={{ color: active === 0 ? "black" : "#007aff " }}>Login</Text>
+            <Text style={{ color: active === 0 ? "black" : "#007aff" }}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.TouchableRightButton}
@@ -104,7 +104,7 @@ const RegistrationNavi = () => {
               active: 1
             }))}
           >
-            <Text style={{ color: active === 0 ? "black" : "#007aff " }}>SignUp</Text>
+            <Text style={{ color: active === 0 ? "black" : "#007aff" }}>SignUp</Text>
           </TouchableOpacity>
         </View>
 

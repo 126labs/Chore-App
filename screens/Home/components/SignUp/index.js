@@ -4,35 +4,65 @@ import {
 } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
+import firebase from "../../../../database/firebase";
 import styles from "./styles";
-
 import {
   emailSignInStart
 } from "../../../../redux/user/userActions";
 
 const SignUp = ({ emailSignInStart }) => {
-  const [login, setLogin] = useState({
-    name: "",
+  const [signUp, setsignUp] = useState({
+    displayName: "",
     email: "",
-    password: ""
+    password: "",
+    isLoading: false
   });
-
+  const {
+    displayName, email, password
+  } = signUp;
   const handleInput = (name, input) => {
-    setLogin((previousState) => ({
+    setsignUp((previousState) => ({
       ...previousState,
       [name]: input
     }));
   };
 
+  const registerUser = () => {
+    if (email === "" && password === "") {
+      Alert.alert("Enter details to signup!");
+    } else {
+      setsignUp({
+        isLoading: true
+      });
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((res) => {
+          res.user.updateProfile({
+            displayName
+          });
+          console.log("User registered successfully!");
+          emailSignInStart({ email, password: res.user.uid });
+          setsignUp({
+            isLoading: false,
+            displayName: "",
+            email: "",
+            password: ""
+          });
+        })
+        .catch((error) => setsignUp({ errorMessage: error.message }));
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.text}>Email</Text>
+        <Text style={styles.text}>Name</Text>
         <TextInput
           placeholder="Name"
-          value={login.username}
+          value={displayName}
           style={styles.input}
-          onChangeText={(value) => handleInput("name", value)}
+          onChangeText={(value) => handleInput("displayName", value)}
         />
       </View>
       <View>
@@ -40,7 +70,7 @@ const SignUp = ({ emailSignInStart }) => {
         <TextInput
           placeholder="Email"
           keyboardType="email-address"
-          value={login.email}
+          value={email}
           style={styles.input}
           onChangeText={(value) => handleInput("email", value)}
         />
@@ -50,7 +80,7 @@ const SignUp = ({ emailSignInStart }) => {
         <TextInput
           placeholder="Password"
           secureTextEntry
-          value={login.password}
+          value={password}
           style={styles.input}
           onChangeText={(value) => handleInput("password", value)}
         />
@@ -61,7 +91,7 @@ const SignUp = ({ emailSignInStart }) => {
           title="SignUp"
           buttonStyle={styles.bottomBtn}
           containerStyle={styles.btnContainer}
-          onPress={emailSignInStart}
+          onPress={registerUser}
         />
       </View>
     </View>

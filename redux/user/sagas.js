@@ -20,9 +20,9 @@ export function* getSnapshotFromUserAuth(userAuth) {
   }
 }
 
-export function* signInWithEmail({ payload: { password = "wa1czc24edasds" } }) {
+export function* signInWithEmail({ payload: { email, password } }) {
   try {
-    yield getSnapshotFromUserAuth(password);
+    yield getSnapshotFromUserAuth({ email, password });
   } catch (error) {
     yield put(signInFailure(error));
   }

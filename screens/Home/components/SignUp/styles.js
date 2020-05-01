@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     paddingLeft: 45,
     backgroundColor: "white",
-    color: "rgba(225, 225, 225, 0.7)",
+    color: "black",
     marginHorizontal: 25
 
   },

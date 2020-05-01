@@ -5,15 +5,16 @@ import {
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import styles from "./styles";
-
+import firebase from "../../../../database/firebase";
 import {
   emailSignInStart
 } from "../../../../redux/user/userActions";
 
-const Login = ({ emailSignInStart }) => {
+const Login = ({ emailSignInStart, navigation }) => {
   const [login, setLogin] = useState({
     email: "",
-    password: ""
+    password: "",
+    isLoading: false
   });
 
   const handleInput = (name, input) => {
@@ -21,6 +22,30 @@ const Login = ({ emailSignInStart }) => {
       ...previousState,
       [name]: input
     }));
+  };
+
+  const userLogin = () => {
+    if (login.email === "" && login.password === "") {
+      Alert.alert("Enter details to signin!");
+    } else {
+      setLogin({
+        isLoading: true
+      });
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(login.email, login.password)
+        .then((res) => {
+          console.log(res);
+          console.log("User logged-in successfully!");
+          emailSignInStart({ email: login.email, password: res.user.uid });
+          setLogin({
+            isLoading: false,
+            email: "",
+            password: ""
+          });
+        })
+        .catch((error) => setLogin({ errorMessage: error.message }));
+    }
   };
 
   const onClick = (viewId) => {
@@ -51,14 +76,12 @@ const Login = ({ emailSignInStart }) => {
       </View>
       <View style={styles.bottomContainer}>
         <Button
-          type="outline"
           title="Login"
           buttonStyle={styles.bottomBtn}
           containerStyle={styles.btnContainer}
-          onPress={emailSignInStart}
+          onPress={userLogin}
         />
         <Button
-          type="outline"
           title="Forgot your password?"
           buttonStyle={styles.bottomBtn}
           containerStyle={styles.btnContainer}
