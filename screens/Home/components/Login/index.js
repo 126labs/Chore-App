@@ -10,11 +10,10 @@ import {
   emailSignInStart
 } from "../../../../redux/user/userActions";
 
-const Login = ({ emailSignInStart, navigation }) => {
+const Login = ({ emailSignInStart }) => {
   const [login, setLogin] = useState({
     email: "",
-    password: "",
-    isLoading: false
+    password: ""
   });
 
   const handleInput = (name, input) => {
@@ -24,13 +23,11 @@ const Login = ({ emailSignInStart, navigation }) => {
     }));
   };
 
-  const userLogin = () => {
+  const userLogin = (event) => {
+    event.preventDefault();
     if (login.email === "" && login.password === "") {
       Alert.alert("Enter details to signin!");
     } else {
-      setLogin({
-        isLoading: true
-      });
       firebase
         .auth()
         .signInWithEmailAndPassword(login.email, login.password)
@@ -39,7 +36,13 @@ const Login = ({ emailSignInStart, navigation }) => {
           console.log("User logged-in successfully!");
           emailSignInStart({ email: login.email, password: res.user.uid });
         })
-        .catch((error) => setLogin({ errorMessage: error.message }));
+        .catch((error) => {
+          alert(error);
+          setLogin({
+            email: login.email,
+            password: ""
+          });
+        });
     }
   };
 

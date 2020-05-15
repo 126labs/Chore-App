@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
-  Alert, Text, View, TextInput, TouchableOpacity
+  Alert, Text, View, TextInput
 } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
@@ -14,8 +14,7 @@ const SignUp = ({ emailSignInStart }) => {
   const [signUp, setsignUp] = useState({
     displayName: "",
     email: "",
-    password: "",
-    isLoading: false
+    password: ""
   });
   const {
     displayName, email, password
@@ -28,12 +27,9 @@ const SignUp = ({ emailSignInStart }) => {
   };
 
   const registerUser = () => {
-    if (email === "" && password === "") {
+    if (displayName === "" && email === "" && password === "") {
       Alert.alert("Enter details to signup!");
     } else {
-      setsignUp({
-        isLoading: true
-      });
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
@@ -44,7 +40,14 @@ const SignUp = ({ emailSignInStart }) => {
           console.log("User registered successfully!");
           emailSignInStart({ email, password: res.user.uid });
         })
-        .catch((error) => setsignUp({ errorMessage: error.message }));
+        .catch((error) => {
+          alert(error);
+          setsignUp({
+            displayName: signUp.displayName,
+            email: signUp.email,
+            password: ""
+          });
+        });
     }
   };
 
@@ -91,7 +94,6 @@ const SignUp = ({ emailSignInStart }) => {
       </View>
       <View style={styles.bottomContainer}>
         <Button
-          type="outline"
           title="SignUp"
           buttonStyle={styles.bottomBtn}
           containerStyle={styles.btnContainer}
