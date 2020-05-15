@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Alert, Text, View, TextInput, TouchableOpacity
 } from "react-native";
@@ -38,15 +38,23 @@ const Login = ({ emailSignInStart, navigation }) => {
           console.log(res);
           console.log("User logged-in successfully!");
           emailSignInStart({ email: login.email, password: res.user.uid });
-          setLogin({
-            isLoading: false,
-            email: "",
-            password: ""
-          });
+          // setLogin({
+          //   isLoading: false,
+          //   email: "",
+          //   password: ""
+          // });
         })
         .catch((error) => setLogin({ errorMessage: error.message }));
     }
   };
+
+  useEffect(() => {
+    setLogin({
+      isLoading: false,
+      email: "",
+      password: ""
+    });
+  }, []);
 
   const onClick = (viewId) => {
     Alert.alert("Alert", `Button pressed ${viewId}`);
