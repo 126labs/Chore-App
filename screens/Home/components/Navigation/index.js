@@ -104,7 +104,7 @@ const RegistrationNavi = () => {
               active: 1
             }))}
           >
-            <Text style={{ color: active === 0 ? "black" : "#007aff" }}>SignUp</Text>
+            <Text style={{ color: active === 0 ? "#007aff" : "black" }}>SignUp</Text>
           </TouchableOpacity>
         </View>
 
