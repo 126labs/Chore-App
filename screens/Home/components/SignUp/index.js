@@ -43,25 +43,17 @@ const SignUp = ({ emailSignInStart }) => {
           });
           console.log("User registered successfully!");
           emailSignInStart({ email, password: res.user.uid });
-          // setsignUp({
-          //   isLoading: false,
-          //   displayName: "",
-          //   email: "",
-          //   password: ""
-          // });
         })
         .catch((error) => setsignUp({ errorMessage: error.message }));
     }
   };
 
-  useEffect(() => {
-    setsignUp({
-      isLoading: false,
-      displayName: "",
-      email: "",
-      password: ""
-    });
-  }, []);
+  useEffect(() => setsignUp({
+    isLoading: false,
+    displayName: "",
+    email: "",
+    password: ""
+  }), []);
 
   return (
     <View style={styles.container}>
